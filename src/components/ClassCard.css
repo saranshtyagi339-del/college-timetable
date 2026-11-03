@@ -1,0 +1,83 @@
+.class-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 13px;
+  padding: 18px;
+  margin-bottom: 12px;
+  transition: 0.2s;
+}
+
+.class-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+}
+
+.class-time {
+  min-width: 95px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.class-time strong {
+  color: #111827;
+  font-size: 13px;
+}
+
+.class-time span {
+  color: #9ca3af;
+  font-size: 11px;
+}
+
+.class-details {
+  flex: 1;
+}
+
+.class-details h3 {
+  margin: 0 0 6px;
+  font-size: 14px;
+  color: #111827;
+}
+
+.class-details p {
+  margin: 0 0 5px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.room-name {
+  color: #9ca3af;
+  font-size: 11px;
+}
+
+.class-badge {
+  background: #eef2ff;
+  color: #4f46e5;
+  padding: 6px 10px;
+  border-radius: 7px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.class-badge.practical {
+  background: #ecfdf5;
+  color: #059669;
+}
+
+@media (max-width: 600px) {
+  .class-card {
+    gap: 12px;
+    padding: 13px;
+  }
+
+  .class-time {
+    min-width: 75px;
+  }
+
+  .class-badge {
+    padding: 5px 7px;
+  }
+}
