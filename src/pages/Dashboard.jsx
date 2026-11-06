@@ -13,7 +13,7 @@ function Dashboard() {
       {/* Sidebar Navigation */}
       <Sidebar />
 
-      {/* Main Dashboard */}
+      {/* Main Dashboard Section */}
       <div className="main-section">
 
         {/* Top Navbar */}
@@ -36,10 +36,6 @@ function Dashboard() {
                 Here's what's happening with your schedule today.
               </p>
             </div>
-
-            <button className="add-class-btn">
-              + Add Class
-            </button>
           </section>
 
           {/* Statistics Cards */}
@@ -75,7 +71,7 @@ function Dashboard() {
 
           </section>
 
-          {/* Interactive Weekly Timetable */}
+          {/* Interactive Timetable with CRUD Operations */}
           <Timetable />
 
         </main>
