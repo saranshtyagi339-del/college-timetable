@@ -3,7 +3,11 @@ import { useEffect, useState } from "react";
 import AppLayout from "../components/AppLayout";
 import "./StudentsPage.css";
 
-const API_URL = "http://localhost:5000/api/students";
+const API_BASE_URL = (
+  import.meta.env.VITE_API_URL || "http://localhost:5000"
+).replace(/\/$/, "");
+
+const API_URL = `${API_BASE_URL}/api/students`;
 
 function StudentsPage() {
   const [students, setStudents] = useState([]);
@@ -279,7 +283,11 @@ function StudentsPage() {
                 {editingId ? "Save Changes" : "Create Student"}
               </button>
 
-              <button type="button" className="cancel-student-btn" onClick={closeForm}>
+              <button
+                type="button"
+                className="cancel-student-btn"
+                onClick={closeForm}
+              >
                 Cancel
               </button>
             </div>

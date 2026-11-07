@@ -1,11 +1,13 @@
 
 import { useCallback, useEffect, useState } from "react";
-
 import AppLayout from "../components/AppLayout";
 import StatCard from "../components/StatCard";
 import Timetable from "../components/Timetable";
-
 import "./Dashboard.css";
+
+const API_BASE_URL = (
+  import.meta.env.VITE_API_URL || "http://localhost:5000"
+).replace(/\/$/, "");
 
 function Dashboard() {
   const [stats, setStats] = useState({
@@ -21,7 +23,7 @@ function Dashboard() {
   const refreshStats = useCallback(async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/classes/stats",
+        `${API_BASE_URL}/api/classes/stats`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,

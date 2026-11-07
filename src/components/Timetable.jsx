@@ -4,7 +4,12 @@ import DaySelector from "./DaySelector";
 import ClassCard from "./ClassCard";
 import "./Timetable.css";
 
-const API_URL = "http://localhost:5000/api/classes";
+// Use Render URL in production and localhost during local development
+const API_BASE_URL = (
+  import.meta.env.VITE_API_URL || "http://localhost:5000"
+).replace(/\/$/, "");
+
+const API_URL = `${API_BASE_URL}/api/classes`;
 
 function Timetable({ onDataChange }) {
   const [classes, setClasses] = useState([]);
