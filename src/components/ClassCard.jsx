@@ -28,17 +28,17 @@ function ClassCard({ classItem, onEdit, onDelete }) {
 
       <div className="class-actions">
         <button
+          type="button"
           className="edit-btn"
           onClick={() => onEdit(classItem)}
-          type="button"
         >
           Edit
         </button>
 
         <button
-          className="delete-btn"
-          onClick={() => onDelete(classItem.id)}
           type="button"
+          className="delete-btn"
+          onClick={() => onDelete(classItem._id)}
         >
           Delete
         </button>

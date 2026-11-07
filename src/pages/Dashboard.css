@@ -1,3 +1,6 @@
+
+/* MAIN APPLICATION LAYOUT */
+
 .app-layout {
   min-height: 100vh;
   background: #f8fafc;
@@ -5,11 +8,19 @@
 
 .main-section {
   margin-left: 250px;
+  width: calc(100% - 250px);
+  min-height: 100vh;
+  transition: margin-left 0.25s ease, width 0.25s ease;
 }
 
+/* DASHBOARD */
+
 .dashboard {
+  width: 100%;
   padding: 30px 35px;
 }
+
+/* WELCOME SECTION */
 
 .welcome-section {
   display: flex;
@@ -38,6 +49,8 @@
   font-size: 13px;
 }
 
+/* ADD CLASS BUTTON */
+
 .add-class-btn {
   background: #4f46e5;
   color: white;
@@ -53,11 +66,15 @@
   background: #4338ca;
 }
 
+/* STATISTICS */
+
 .stats-grid {
   display: flex;
   gap: 18px;
   margin-bottom: 25px;
 }
+
+/* CONTENT GRID */
 
 .content-grid {
   display: grid;
@@ -72,6 +89,8 @@
   border-radius: 16px;
   padding: 22px;
 }
+
+/* SECTION HEADER */
 
 .section-header {
   display: flex;
@@ -100,6 +119,8 @@
   font-size: 12px;
   cursor: pointer;
 }
+
+/* SCHEDULE ITEMS */
 
 .schedule-item {
   display: flex;
@@ -148,6 +169,8 @@
   font-weight: 600;
 }
 
+/* QUICK PANEL */
+
 .quick-panel button {
   width: 100%;
   padding: 13px;
@@ -159,6 +182,7 @@
   cursor: pointer;
   font-size: 12px;
   color: #374151;
+  transition: all 0.2s ease;
 }
 
 .quick-panel button:hover {
@@ -168,4 +192,66 @@
 
 .quick-panel button span {
   margin-right: 10px;
+}
+
+/* RESPONSIVE DESIGN */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .dashboard {
+    padding: 25px 22px;
+  }
+
+  .stats-grid {
+    flex-wrap: wrap;
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .main-section {
+    margin-left: 75px;
+    width: calc(100% - 75px);
+  }
+
+  .dashboard {
+    padding: 22px 15px;
+  }
+
+  .welcome-section {
+    align-items: flex-start;
+  }
+
+  .welcome-section h2 {
+    font-size: 21px;
+  }
+
+  .stats-grid {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .dashboard {
+    padding: 18px 12px;
+  }
+
+  .welcome-section h2 {
+    font-size: 19px;
+  }
+
+  .schedule-panel,
+  .quick-panel {
+    padding: 15px;
+  }
 }

@@ -1,0 +1,326 @@
+
+/* Main page */
+
+.role-selection-page {
+  min-height: 100vh;
+  background: #f7f8fc;
+  color: #1e293b;
+  padding: 28px 6%;
+  overflow: hidden;
+}
+
+/* Header */
+
+.role-header {
+  max-width: 1250px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.role-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #4f46e5;
+  color: #ffffff;
+  font-size: 23px;
+  font-weight: 800;
+  border-radius: 13px;
+}
+
+.role-brand h1 {
+  font-size: 25px;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.role-brand h1 span {
+  color: #4f46e5;
+}
+
+.role-brand p {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.7px;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+.header-status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  background: #ffffff;
+  border: 1px solid #e9edf3;
+  border-radius: 30px;
+  color: #64748b;
+  font-size: 12px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  background: #22c55e;
+  border-radius: 50%;
+}
+
+/* Main section */
+
+.role-main {
+  max-width: 1150px;
+  margin: 85px auto 0;
+}
+
+.role-heading {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 48px;
+}
+
+.role-eyebrow {
+  display: inline-block;
+  color: #4f46e5;
+  background: #eef2ff;
+  padding: 8px 14px;
+  border-radius: 30px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+}
+
+.role-heading h2 {
+  font-size: clamp(32px, 4vw, 45px);
+  line-height: 1.2;
+  letter-spacing: -1.5px;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 20px 0 14px;
+}
+
+.role-heading h2 span {
+  color: #4f46e5;
+}
+
+.role-heading > p {
+  color: #8490a3;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* Role cards */
+
+.role-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.role-card {
+  background: #ffffff;
+  border: 1px solid #e8edf3;
+  border-radius: 18px;
+  padding: 25px;
+  min-height: 350px;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.role-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 18px 40px rgba(30, 41, 59, 0.09);
+}
+
+.role-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.role-icon {
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  font-size: 28px;
+}
+
+.student-role .role-icon {
+  background: #eef2ff;
+}
+
+.teacher-role .role-icon {
+  background: #ecfdf5;
+}
+
+.admin-role .role-icon {
+  background: #f3e8ff;
+}
+
+.role-arrow {
+  color: #a0aabc;
+  font-size: 22px;
+}
+
+.role-card-content {
+  margin-top: 27px;
+}
+
+.role-label {
+  color: #94a3b8;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.role-card h3 {
+  color: #1e293b;
+  font-size: 21px;
+  margin: 10px 0;
+}
+
+.role-card-content p {
+  color: #8490a3;
+  font-size: 12px;
+  line-height: 1.8;
+  min-height: 65px;
+}
+
+/* Features */
+
+.role-features {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  margin-top: 17px;
+}
+
+.role-feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.feature-check {
+  width: 17px;
+  height: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #ecfdf5;
+  color: #16a34a;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+/* Continue button */
+
+.role-continue {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #edf0f5;
+  margin-top: auto;
+  padding-top: 19px;
+  color: #4f46e5;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.role-continue span {
+  font-size: 17px;
+  transition: transform 0.2s;
+}
+
+.role-card:hover .role-continue span {
+  transform: translateX(5px);
+}
+
+/* Footer */
+
+.role-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 55px;
+  padding-top: 20px;
+  border-top: 1px solid #e9edf3;
+}
+
+.role-security {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #8490a3;
+  font-size: 11px;
+}
+
+.role-bottom > p {
+  color: #a0aabc;
+  font-size: 11px;
+}
+
+/* Responsive design */
+
+@media (max-width: 900px) {
+  .role-main {
+    margin-top: 65px;
+  }
+
+  .role-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: auto;
+  }
+
+  .role-card {
+    min-height: 320px;
+  }
+}
+
+@media (max-width: 600px) {
+  .role-selection-page {
+    padding: 20px 5%;
+  }
+
+  .header-status {
+    display: none;
+  }
+
+  .role-main {
+    margin-top: 55px;
+  }
+
+  .role-heading {
+    margin-bottom: 32px;
+  }
+
+  .role-heading h2 {
+    font-size: 31px;
+  }
+
+  .role-bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+

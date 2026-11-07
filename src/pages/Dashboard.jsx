@@ -1,82 +1,97 @@
 
-import Sidebar from "../components/Sidebar";
-import Navbar from "../components/Navbar";
+import { useCallback, useEffect, useState } from "react";
+
+import AppLayout from "../components/AppLayout";
 import StatCard from "../components/StatCard";
 import Timetable from "../components/Timetable";
 
 import "./Dashboard.css";
 
 function Dashboard() {
+  const [stats, setStats] = useState({
+    totalClasses: 0,
+    totalSubjects: 0,
+    totalTeachers: 0,
+    totalClassrooms: 0,
+  });
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  const refreshStats = useCallback(async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/classes/stats",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || "Failed to load statistics");
+      }
+
+      setStats(result.data);
+      setError("");
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    refreshStats();
+  }, [refreshStats]);
+
   return (
-    <div className="app-layout">
+    <AppLayout>
+      <section className="welcome-section">
+        <div>
+          <p className="welcome-label">OVERVIEW</p>
+          <h2>Good morning, Student 👋</h2>
+          <p>Here's what's happening with your schedule today.</p>
+        </div>
+      </section>
 
-      {/* Sidebar Navigation */}
-      <Sidebar />
+      {error && <p className="error-message">{error}</p>}
 
-      {/* Main Dashboard Section */}
-      <div className="main-section">
+      <section className="stats-grid">
+        <StatCard
+          title="Total Classes"
+          value={loading ? "..." : stats.totalClasses}
+          description="In your timetable"
+          icon="📚"
+        />
 
-        {/* Top Navbar */}
-        <Navbar />
+        <StatCard
+          title="Subjects"
+          value={loading ? "..." : stats.totalSubjects}
+          description="Unique subjects"
+          icon="📖"
+        />
 
-        <main className="dashboard">
+        <StatCard
+          title="Teachers"
+          value={loading ? "..." : stats.totalTeachers}
+          description="Faculty members"
+          icon="👨‍🏫"
+        />
 
-          {/* Welcome Section */}
-          <section className="welcome-section">
-            <div>
-              <p className="welcome-label">
-                OVERVIEW
-              </p>
+        <StatCard
+          title="Classrooms"
+          value={loading ? "..." : stats.totalClassrooms}
+          description="Unique rooms"
+          icon="🏫"
+        />
+      </section>
 
-              <h2>
-                Good morning, Student 👋
-              </h2>
-
-              <p>
-                Here's what's happening with your schedule today.
-              </p>
-            </div>
-          </section>
-
-          {/* Statistics Cards */}
-          <section className="stats-grid">
-
-            <StatCard
-              title="Total Classes"
-              value="24"
-              description="This week"
-              icon="📚"
-            />
-
-            <StatCard
-              title="Subjects"
-              value="8"
-              description="This semester"
-              icon="📖"
-            />
-
-            <StatCard
-              title="Teachers"
-              value="12"
-              description="Faculty members"
-              icon="👨‍🏫"
-            />
-
-            <StatCard
-              title="Classrooms"
-              value="10"
-              description="Available rooms"
-              icon="🏫"
-            />
-
-          </section>
-
-          {/* Interactive Timetable with CRUD Operations */}
-          <Timetable />
-
-        </main>
-      </div>
-    </div>
+      <Timetable onDataChange={refreshStats} />
+    </AppLayout>
   );
 }
 

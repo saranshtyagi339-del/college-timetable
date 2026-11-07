@@ -1,0 +1,149 @@
+
+.teacher-dashboard {
+  min-height: 100vh;
+  padding: 35px;
+  background: #f6f7fb;
+  color: #172033;
+}
+
+.teacher-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.teacher-header h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+}
+
+.teacher-header p {
+  margin: 0;
+  color: #8490a5;
+  font-size: 14px;
+}
+
+.teacher-header button {
+  padding: 11px 20px;
+  border: none;
+  border-radius: 9px;
+  background: #4f46e5;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.teacher-profile {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.teacher-profile > div,
+.teacher-schedule {
+  padding: 23px;
+  border: 1px solid #e9edf4;
+  border-radius: 14px;
+  background: white;
+  box-shadow: 0 3px 12px rgba(20, 35, 70, 0.03);
+}
+
+.teacher-profile span {
+  color: #8490a5;
+  font-size: 13px;
+}
+
+.teacher-profile h3 {
+  margin: 9px 0 0;
+  font-size: 17px;
+  overflow-wrap: anywhere;
+}
+
+.teacher-schedule h2 {
+  margin: 0 0 7px;
+  font-size: 21px;
+}
+
+.teacher-subtitle {
+  margin: 0 0 25px;
+  color: #8490a5;
+  font-size: 13px;
+}
+
+.teacher-day {
+  margin-bottom: 23px;
+}
+
+.teacher-day h3 {
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.teacher-class-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: center;
+  gap: 15px;
+  padding: 16px;
+  margin-bottom: 10px;
+  border: 1px solid #edf0f5;
+  border-left: 4px solid #6366f1;
+  border-radius: 10px;
+  background: #fafbff;
+}
+
+.teacher-class-card h4 {
+  margin: 0 0 6px;
+  font-size: 14px;
+}
+
+.teacher-class-card p {
+  margin: 0;
+  color: #8490a5;
+  font-size: 12px;
+}
+
+.teacher-class-card strong {
+  font-size: 13px;
+}
+
+.teacher-class-card > span {
+  padding: 7px 10px;
+  border-radius: 7px;
+  background: #eef2ff;
+  color: #4f46e5;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.teacher-status,
+.teacher-no-class {
+  padding: 18px;
+  color: #8490a5;
+  font-size: 14px;
+}
+
+.teacher-error {
+  color: #dc2626;
+}
+
+@media (max-width: 700px) {
+  .teacher-dashboard {
+    padding: 18px;
+  }
+
+  .teacher-profile {
+    grid-template-columns: 1fr;
+  }
+
+  .teacher-header {
+    align-items: flex-start;
+  }
+
+  .teacher-class-card {
+    grid-template-columns: 1fr;
+  }
+}

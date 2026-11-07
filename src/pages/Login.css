@@ -1,0 +1,153 @@
+
+.login-page {
+  min-height: 100vh;
+  background: #f7f8fc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  position: relative;
+}
+
+.login-back {
+  position: absolute;
+  top: 35px;
+  left: 7%;
+  color: #64748b;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.login-back:hover {
+  color: #5145e5;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 430px;
+  background: white;
+  border: 1px solid #e5eaf2;
+  border-radius: 20px;
+  padding: 38px;
+  box-shadow: 0 15px 45px rgba(30, 41, 59, 0.06);
+}
+
+.login-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #17233b;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: 800;
+  margin-bottom: 30px;
+}
+
+.login-brand-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: #5145e5;
+  color: white;
+  display: grid;
+  place-items: center;
+}
+
+.brand-dot {
+  color: #5145e5;
+}
+
+.login-icon {
+  width: 65px;
+  height: 65px;
+  margin: 0 auto 18px;
+  border-radius: 18px;
+  background: #f0efff;
+  display: grid;
+  place-items: center;
+  font-size: 30px;
+}
+
+.login-card h1 {
+  text-align: center;
+  color: #17233b;
+  font-size: 25px;
+  margin: 0 0 10px;
+}
+
+.login-subtitle {
+  text-align: center;
+  color: #8490a5;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+.login-card form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-card label {
+  color: #344054;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.login-card input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 14px;
+  border: 1px solid #dfe4ed;
+  border-radius: 9px;
+  outline: none;
+  font-size: 14px;
+  margin-bottom: 20px;
+  background: #fff;
+}
+
+.login-card input:focus {
+  border-color: #5145e5;
+  box-shadow: 0 0 0 3px rgba(81, 69, 229, 0.1);
+}
+
+.login-button {
+  width: 100%;
+  border: none;
+  border-radius: 9px;
+  padding: 14px;
+  background: #5145e5;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 5px;
+}
+
+.login-button:hover {
+  background: #4035c9;
+}
+
+.login-footer {
+  text-align: center;
+  color: #98a2b3;
+  font-size: 12px;
+  margin: 25px 0 0;
+}
+
+@media (max-width: 500px) {
+  .login-card {
+    padding: 28px 22px;
+  }
+
+  .login-back {
+    position: static;
+    align-self: flex-start;
+    margin: 0 0 25px 5px;
+  }
+}

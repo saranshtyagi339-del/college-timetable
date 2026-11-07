@@ -1,4 +1,6 @@
+
 import "./DaySelector.css";
+
 function DaySelector({ selectedDay, onDayChange }) {
   const days = [
     "Monday",
@@ -14,8 +16,8 @@ function DaySelector({ selectedDay, onDayChange }) {
         <button
           key={day}
           type="button"
-          className={`day-button ${
-            selectedDay === day ? "selected" : ""
+          className={`day-btn ${
+            selectedDay === day ? "active" : ""
           }`}
           onClick={() => onDayChange(day)}
         >

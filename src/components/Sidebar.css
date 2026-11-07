@@ -1,119 +1,185 @@
+
+/* SIDEBAR CONTAINER */
+
 .sidebar {
   width: 250px;
+  min-width: 250px;
   height: 100vh;
-  background: #ffffff;
-  border-right: 1px solid #e5e7eb;
-  padding: 28px 18px;
-  display: flex;
-  flex-direction: column;
   position: fixed;
-  left: 0;
   top: 0;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 0 10px;
-  margin-bottom: 40px;
-}
-
-.logo-icon {
-  width: 42px;
-  height: 42px;
-  background: #4f46e5;
-  color: white;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-}
-
-.logo h2 {
-  margin: 0;
-  font-size: 20px;
-  color: #111827;
-}
-
-.logo span {
-  font-size: 11px;
-  color: #9ca3af;
-}
-
-.sidebar-nav {
+  left: 0;
+  z-index: 100;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  background: #ffffff;
+  border-right: 1px solid #e8edf4;
+  padding: 0 16px;
 }
 
-.nav-title {
+/* BRAND */
+
+.sidebar-brand {
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 12px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.sidebar-brand h2 {
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: #172033;
+}
+
+.sidebar-brand h2 span {
+  color: #4f46e5;
+}
+
+.sidebar-brand p {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+/* NAVIGATION */
+
+.sidebar-navigation {
+  padding-top: 35px;
+  flex: 1;
+}
+
+.sidebar-label {
   font-size: 10px;
   font-weight: 700;
-  color: #9ca3af;
-  letter-spacing: 1px;
-  margin: 15px 10px 8px;
+  letter-spacing: 1.2px;
+  color: #94a3b8;
+  padding: 0 12px;
+  margin-bottom: 15px;
 }
 
-.nav-item {
+.sidebar-menu-item {
+  width: 100%;
+  min-height: 46px;
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 12px 14px;
+  gap: 13px;
+  padding: 0 13px;
+  margin-bottom: 8px;
+  border: none;
   border-radius: 10px;
-  color: #6b7280;
-  text-decoration: none;
-  font-size: 14px;
-  transition: 0.2s;
+  background: transparent;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: left;
+  transition: all 0.2s ease;
 }
 
-.nav-item span {
-  width: 20px;
-  text-align: center;
-}
-
-.nav-item:hover {
-  background: #f3f4ff;
+.sidebar-menu-item:hover {
+  background: #f8fafc;
   color: #4f46e5;
 }
 
-.nav-item.active {
+.sidebar-menu-item.active {
   background: #eef2ff;
   color: #4f46e5;
-  font-weight: 600;
+  font-weight: 700;
 }
+
+.sidebar-icon {
+  width: 22px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 19px;
+}
+
+/* BOTTOM SECTION */
 
 .sidebar-bottom {
-  margin-top: auto;
+  padding-bottom: 20px;
 }
 
-.help-box {
-  background: #f8f8ff;
+.sidebar-help {
+  margin-top: 22px;
+  padding: 17px 15px;
   border-radius: 14px;
-  padding: 14px;
-  display: flex;
-  gap: 10px;
-  align-items: center;
+  background: linear-gradient(135deg, #f5f3ff, #eef2ff);
 }
 
 .help-icon {
   width: 32px;
   height: 32px;
-  background: #4f46e5;
-  color: white;
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #ffffff;
+  color: #4f46e5;
+  border-radius: 9px;
+  font-size: 17px;
+  margin-bottom: 12px;
 }
 
-.help-box strong {
-  font-size: 12px;
+.sidebar-help h4 {
+  font-size: 13px;
+  color: #1e293b;
+  margin-bottom: 5px;
 }
 
-.help-box p {
-  margin: 3px 0 0;
-  font-size: 10px;
-  color: #9ca3af;
+.sidebar-help p {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #64748b;
+  margin-bottom: 12px;
+}
+
+.sidebar-help button {
+  border: none;
+  background: transparent;
+  color: #4f46e5;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 0;
+}
+
+.sidebar-help button:hover {
+  color: #3730a3;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 75px;
+    min-width: 75px;
+    padding: 0 8px;
+  }
+
+  .sidebar-brand {
+    padding: 0;
+    align-items: center;
+  }
+
+  .sidebar-brand h2 {
+    font-size: 16px;
+  }
+
+  .sidebar-brand p,
+  .sidebar-label,
+  .sidebar-menu-item > span:last-child,
+  .sidebar-help {
+    display: none;
+  }
+
+  .sidebar-menu-item {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .sidebar-icon {
+    font-size: 21px;
+  }
 }

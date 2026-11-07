@@ -1,87 +1,99 @@
 
+/* CLASS CARD */
+
 .class-card {
   display: flex;
   align-items: center;
   gap: 20px;
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 13px;
-  padding: 18px;
-  margin-bottom: 12px;
-  transition: 0.2s;
+  padding: 17px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  transition: all 0.2s ease;
 }
 
 .class-card:hover {
+  border-color: #c7d2fe;
+  box-shadow: 0 5px 15px rgba(15, 23, 42, 0.04);
   transform: translateY(-2px);
-  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
 }
 
+/* TIME */
+
 .class-time {
-  min-width: 95px;
+  width: 85px;
+  min-width: 85px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 4px;
 }
 
 .class-time strong {
-  color: #111827;
-  font-size: 13px;
+  font-size: 12px;
+  color: #172033;
 }
 
 .class-time span {
-  color: #9ca3af;
-  font-size: 11px;
+  font-size: 10px;
+  color: #94a3b8;
 }
+
+/* CLASS DETAILS */
 
 .class-details {
   flex: 1;
-  min-width: 100px;
+  min-width: 0;
 }
 
 .class-details h3 {
-  margin: 0 0 6px;
-  font-size: 14px;
-  color: #111827;
+  font-size: 13px;
+  color: #172033;
+  margin-bottom: 5px;
 }
 
 .class-details p {
-  margin: 0 0 5px;
-  font-size: 12px;
-  color: #6b7280;
+  font-size: 11px;
+  color: #64748b;
+  margin-bottom: 5px;
 }
 
 .room-name {
-  color: #9ca3af;
-  font-size: 11px;
+  font-size: 10px;
+  color: #94a3b8;
 }
 
+/* CLASS BADGE */
+
 .class-badge {
+  padding: 7px 11px;
+  border-radius: 7px;
   background: #eef2ff;
   color: #4f46e5;
-  padding: 6px 10px;
-  border-radius: 7px;
   font-size: 10px;
   font-weight: 600;
   white-space: nowrap;
 }
 
 .class-badge.practical {
-  background: #ecfdf5;
-  color: #059669;
+  background: #dcfce7;
+  color: #15803d;
 }
+
+/* ACTION BUTTONS */
 
 .class-actions {
   display: flex;
-  gap: 7px;
+  align-items: center;
+  gap: 8px;
 }
 
 .class-actions button {
+  padding: 7px 11px;
   border: none;
-  padding: 7px 10px;
   border-radius: 7px;
-  cursor: pointer;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
+  transition: all 0.2s ease;
 }
 
 .edit-btn {
@@ -102,10 +114,17 @@
   background: #fee2e2;
 }
 
-@media (max-width: 700px) {
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
   .class-card {
     flex-wrap: wrap;
     gap: 12px;
+  }
+
+  .class-time {
+    width: 75px;
+    min-width: 75px;
   }
 
   .class-details {
@@ -115,5 +134,19 @@
   .class-actions {
     width: 100%;
     justify-content: flex-end;
+  }
+}
+
+@media (max-width: 420px) {
+  .class-card {
+    padding: 13px;
+  }
+
+  .class-badge {
+    font-size: 9px;
+  }
+
+  .class-actions button {
+    padding: 7px 10px;
   }
 }

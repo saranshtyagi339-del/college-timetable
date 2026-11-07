@@ -1,29 +1,36 @@
 
 const express = require("express");
-
 const router = express.Router();
 
 const {
-  getAllClasses,
+  getClasses,
   getClassById,
-  addClass,
+  createClass,
   updateClass,
   deleteClass,
+  getClassStats,
 } = require("../controllers/classController");
 
-// GET all classes
-router.get("/", getAllClasses);
+const {
+  protect,
+  authorize,
+} = require("../middleware/authMiddleware");
 
-// GET one class
+// All timetable routes require authentication
+router.use(protect);
+
+// Get timetable entries (role-specific filtering will be added next)
+router.get("/", getClasses);
+
+// Dashboard statistics — admin only
+router.get("/stats", authorize("admin"), getClassStats);
+
+// Get one timetable entry
 router.get("/:id", getClassById);
 
-// POST a new class
-router.post("/", addClass);
-
-// PUT update a class
-router.put("/:id", updateClass);
-
-// DELETE a class
-router.delete("/:id", deleteClass);
+// Admin-only timetable operations
+router.post("/", authorize("admin"), createClass);
+router.put("/:id", authorize("admin"), updateClass);
+router.delete("/:id", authorize("admin"), deleteClass);
 
 module.exports = router;

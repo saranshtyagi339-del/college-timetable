@@ -1,41 +1,45 @@
+
 import "./Navbar.css";
 
 function Navbar() {
   return (
     <header className="navbar">
-
-      <div className="page-title">
+      <div className="navbar-heading">
         <h1>Dashboard</h1>
         <p>Manage your college schedule easily</p>
       </div>
 
       <div className="navbar-actions">
-
-        <div className="search-box">
+        {/* Search */}
+        <div className="navbar-search">
           <span>⌕</span>
           <input
             type="text"
             placeholder="Search..."
+            aria-label="Search"
           />
         </div>
 
-        <button className="notification-btn">
-          ♢
+        {/* Notification */}
+        <button
+          type="button"
+          className="notification-btn"
+          aria-label="Notifications"
+          onClick={() => alert("No new notifications")}
+        >
+          ♧
         </button>
 
-        <div className="profile">
-          <div className="profile-avatar">
-            ST
-          </div>
+        {/* Student Profile */}
+        <div className="navbar-profile">
+          <div className="profile-avatar">ST</div>
 
-          <div className="profile-info">
-            <strong>Student</strong>
-            <span>CSE • Semester V</span>
+          <div className="profile-details">
+            <h4>Student</h4>
+            <p>CSE • Semester V</p>
           </div>
         </div>
-
       </div>
-
     </header>
   );
 }
