@@ -29,7 +29,6 @@ const userSchema = new mongoose.Schema(
       enum: ["student", "teacher", "admin"],
     },
 
-    // Student-specific information
     course: {
       type: String,
       default: "",
@@ -45,7 +44,6 @@ const userSchema = new mongoose.Schema(
       default: "",
     },
 
-    // Teacher-specific information
     department: {
       type: String,
       default: "",

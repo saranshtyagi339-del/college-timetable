@@ -11,26 +11,14 @@ const {
   getClassStats,
 } = require("../controllers/classController");
 
-const {
-  protect,
-  authorize,
-} = require("../middleware/authMiddleware");
-
-// All timetable routes require authentication
-router.use(protect);
-
-// Get timetable entries (role-specific filtering will be added next)
+// Public demo routes: no login required
 router.get("/", getClasses);
-
-// Dashboard statistics — admin only
-router.get("/stats", authorize("admin"), getClassStats);
-
-// Get one timetable entry
+router.get("/stats", getClassStats);
 router.get("/:id", getClassById);
 
-// Admin-only timetable operations
-router.post("/", authorize("admin"), createClass);
-router.put("/:id", authorize("admin"), updateClass);
-router.delete("/:id", authorize("admin"), deleteClass);
+// Demo admin operations: publicly accessible
+router.post("/", createClass);
+router.put("/:id", updateClass);
+router.delete("/:id", deleteClass);
 
 module.exports = router;

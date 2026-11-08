@@ -12,59 +12,48 @@ const API_URL = `${API_BASE_URL}/api/classes`;
 function StudentDashboard() {
   const navigate = useNavigate();
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({
+    name: "Demo Student",
+    course: "Computer Science Engineering",
+    semester: 5,
+    section: "A",
+  });
+
   const [classes, setClasses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
+    // Use saved student information when available.
     try {
       const savedUser = JSON.parse(localStorage.getItem("user"));
-      const token = localStorage.getItem("token");
 
-      if (!token || !savedUser || savedUser.role !== "student") {
-        navigate("/login/student");
-        return;
+      if (savedUser) {
+        setUser((previous) => ({ ...previous, ...savedUser }));
       }
-
-      setUser(savedUser);
-      fetchTimetable(token);
     } catch {
-      localStorage.removeItem("user");
-      localStorage.removeItem("token");
-      navigate("/login/student");
+      console.log("Using demo student profile.");
     }
-  }, [navigate]);
 
-  const fetchTimetable = async (token) => {
+    fetchTimetable();
+  }, []);
+
+  const fetchTimetable = async () => {
     try {
-      const response = await fetch(API_URL, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
+      const response = await fetch(API_URL);
       const result = await response.json();
 
       if (!response.ok) {
         throw new Error(result.message || "Unable to load timetable.");
       }
 
-      setClasses(result.data || []);
+      setClasses(Array.isArray(result.data) ? result.data : []);
     } catch (err) {
-      setError(err.message);
+      setError(err.message || "Unable to connect to the server.");
     } finally {
       setLoading(false);
     }
   };
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    navigate("/");
-  };
-
-  if (!user) return null;
 
   const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
@@ -73,10 +62,10 @@ function StudentDashboard() {
       <header className="student-header">
         <div>
           <h1>Student Dashboard</h1>
-          <p>Welcome back, {user.name}!</p>
+          <p>Welcome, {user.name}!</p>
         </div>
 
-        <button onClick={handleLogout}>Logout</button>
+        <button onClick={() => navigate("/")}>Home</button>
       </header>
 
       <section className="student-profile">
@@ -100,20 +89,19 @@ function StudentDashboard() {
         <div className="student-section-heading">
           <div>
             <h2>My Weekly Timetable</h2>
-            <p>Your officially published class schedule.</p>
+            <p>Your published class schedule.</p>
           </div>
 
           <span>{classes.length} Classes</span>
         </div>
 
         {loading ? (
-          <p className="student-status">Loading your timetable...</p>
+          <p className="student-status">Loading timetable...</p>
         ) : error ? (
           <p className="student-status student-error">{error}</p>
         ) : classes.length === 0 ? (
           <p className="student-status">
-            No published timetable is available for your course, semester
-            and section yet.
+            No published timetable is available yet.
           </p>
         ) : (
           days.map((day) => {
@@ -130,7 +118,10 @@ function StudentDashboard() {
                 ) : (
                   <div className="student-class-list">
                     {dailyClasses.map((item) => (
-                      <article className="student-class-card" key={item._id}>
+                      <article
+                        className="student-class-card"
+                        key={item._id}
+                      >
                         <div>
                           <h4>{item.subject}</h4>
                           <p>{item.teacher}</p>

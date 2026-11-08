@@ -2,36 +2,10 @@
 const Class = require("../models/Class");
 const mongoose = require("mongoose");
 
-// GET: Fetch timetable according to user role
+// GET: Fetch all timetable entries
 const getClasses = async (req, res) => {
   try {
-    let filter = {};
-
-    if (req.user.role === "admin") {
-      // Admin can view all classes, including drafts
-      filter = {};
-    } else if (req.user.role === "student") {
-      // Students see only their published timetable
-      filter = {
-        status: "published",
-        course: req.user.course,
-        semester: req.user.semester,
-        section: req.user.section,
-      };
-    } else if (req.user.role === "teacher") {
-      // Teachers see only their published classes
-      filter = {
-        status: "published",
-        teacher: req.user.name,
-      };
-    } else {
-      return res.status(403).json({
-        success: false,
-        message: "Access denied.",
-      });
-    }
-
-    const classes = await Class.find(filter).sort({
+    const classes = await Class.find({}).sort({
       day: 1,
       startTime: 1,
     });
@@ -42,6 +16,8 @@ const getClasses = async (req, res) => {
       data: classes,
     });
   } catch (error) {
+    console.error("Get classes error:", error.message);
+
     res.status(500).json({
       success: false,
       message: "Failed to fetch timetable entries.",
@@ -53,7 +29,6 @@ const getClasses = async (req, res) => {
 const getClassStats = async (req, res) => {
   try {
     const totalClasses = await Class.countDocuments();
-
     const subjects = await Class.distinct("subject");
     const teachers = await Class.distinct("teacher");
     const classrooms = await Class.distinct("room");
@@ -68,6 +43,8 @@ const getClassStats = async (req, res) => {
       },
     });
   } catch (error) {
+    console.error("Class statistics error:", error.message);
+
     res.status(500).json({
       success: false,
       message: "Failed to fetch timetable statistics.",
@@ -85,25 +62,7 @@ const getClassById = async (req, res) => {
       });
     }
 
-    let filter = { _id: req.params.id };
-
-    if (req.user.role === "student") {
-      filter = {
-        ...filter,
-        status: "published",
-        course: req.user.course,
-        semester: req.user.semester,
-        section: req.user.section,
-      };
-    } else if (req.user.role === "teacher") {
-      filter = {
-        ...filter,
-        status: "published",
-        teacher: req.user.name,
-      };
-    }
-
-    const timetableClass = await Class.findOne(filter);
+    const timetableClass = await Class.findById(req.params.id);
 
     if (!timetableClass) {
       return res.status(404).json({
@@ -117,6 +76,8 @@ const getClassById = async (req, res) => {
       data: timetableClass,
     });
   } catch (error) {
+    console.error("Get class error:", error.message);
+
     res.status(500).json({
       success: false,
       message: "Failed to fetch timetable entry.",
@@ -124,7 +85,7 @@ const getClassById = async (req, res) => {
   }
 };
 
-// POST: Create a timetable entry
+// POST: Create timetable entry
 const createClass = async (req, res) => {
   try {
     const {
@@ -179,6 +140,8 @@ const createClass = async (req, res) => {
       data: newClass,
     });
   } catch (error) {
+    console.error("Create class error:", error.message);
+
     res.status(400).json({
       success: false,
       message: error.message || "Failed to create timetable entry.",
@@ -186,7 +149,7 @@ const createClass = async (req, res) => {
   }
 };
 
-// PUT: Update a timetable entry
+// PUT: Update timetable entry
 const updateClass = async (req, res) => {
   try {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -243,6 +206,8 @@ const updateClass = async (req, res) => {
       data: updatedClass,
     });
   } catch (error) {
+    console.error("Update class error:", error.message);
+
     res.status(400).json({
       success: false,
       message: error.message || "Failed to update timetable entry.",
@@ -250,7 +215,7 @@ const updateClass = async (req, res) => {
   }
 };
 
-// DELETE: Delete a timetable entry
+// DELETE: Delete timetable entry
 const deleteClass = async (req, res) => {
   try {
     if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
@@ -274,6 +239,8 @@ const deleteClass = async (req, res) => {
       message: "Timetable entry deleted successfully.",
     });
   } catch (error) {
+    console.error("Delete class error:", error.message);
+
     res.status(500).json({
       success: false,
       message: "Failed to delete timetable entry.",
