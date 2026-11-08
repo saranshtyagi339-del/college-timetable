@@ -5,29 +5,18 @@ import "./AdminDashboard.css";
 function AdminDashboard() {
   const navigate = useNavigate();
 
-  let user = null;
+  let savedUser = null;
 
   try {
-    user = JSON.parse(localStorage.getItem("user"));
+    savedUser = JSON.parse(localStorage.getItem("user"));
   } catch {
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
+    console.log("Using demo admin profile.");
   }
 
-  if (!localStorage.getItem("token") || !user) {
-    window.location.href = "/login/admin";
-    return null;
-  }
-
-  if (user.role !== "admin") {
-    window.location.href = "/";
-    return null;
-  }
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    navigate("/");
+  const user = {
+    name: "Demo Admin",
+    role: "admin",
+    ...(savedUser && savedUser.role === "admin" ? savedUser : {}),
   };
 
   const managementCards = [
@@ -69,8 +58,11 @@ function AdminDashboard() {
           <p>Welcome back, {user.name}!</p>
         </div>
 
-        <button className="admin-logout" onClick={handleLogout}>
-          Logout
+        <button
+          className="admin-logout"
+          onClick={() => navigate("/")}
+        >
+          Back to Home
         </button>
       </header>
 
